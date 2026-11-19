@@ -135,7 +135,8 @@ function loginHTML() {
     <div class="form-error" id="login-err"></div>
     <button class="btn primary block" type="submit" ${loginRole ? '' : 'disabled'}>${esc(t('Open'))}</button>
    </form>
-   <p class="muted sm center">${esc(t('Signed in as'))} <b>${esc(Cloud.user ? Cloud.user.email : '')}</b> ·
+   ${Cloud.demo ? `<p class="muted sm center">${esc(t('Demo: the PIN for both is 0000. Nothing you enter is saved.'))}</p>` : ''}
+   <p class="muted sm center">${esc(t('Signed in as'))} <b>${esc(Cloud.demo ? t('Demo') : Cloud.user ? Cloud.user.email : '')}</b> ·
     <a href="#" onclick="${act((e) => { e.preventDefault(); confirmBox(t('Sign out of the business account on this device?'), () => Cloud.signOut()); })}">${esc(t('Sign out of account'))}</a></p>
   </div></div>`;
 }

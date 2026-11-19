@@ -97,6 +97,10 @@ const I18N_MY = {
   'Signed in as': 'ဝင်ထားသောအကောင့်',
   'Sign out of account': 'အကောင့်မှ ထွက်မည်',
   'Sign out of the business account on this device?': 'ဤစက်ပေါ်ရှိ လုပ်ငန်းအကောင့်မှ ထွက်မလား?',
+  'Demo — not saved': 'နမူနာ — မသိမ်းပါ',
+  'Try the demo with sample data': 'နမူနာအချက်အလက်ဖြင့် စမ်းသုံးကြည့်ရန်',
+  'Demo: the PIN for both is 0000. Nothing you enter is saved.': 'နမူနာ — PIN နှစ်ခုလုံး 0000 ဖြစ်သည်။ ထည့်သွင်းသမျှ မသိမ်းပါ။',
+  'Demo': 'နမူနာ',
   'Only the owner account can do this.': 'ဤလုပ်ဆောင်ချက်ကို ပိုင်ရှင်အကောင့်ဖြင့်သာ ပြုလုပ်နိုင်ပါသည်။',
   // login
   'Choose a user type': 'အသုံးပြုသူအမျိုးအစားကိုရွေးချယ်ပါ',

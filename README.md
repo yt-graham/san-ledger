@@ -6,6 +6,10 @@ Live at **https://yt-graham.github.io/san-ledger/**. Data is saved online in a N
 owner and the cashier see the same records on any phone or computer. Use **Backup / Restore** to download a
 backup file regularly as well.
 
+## Demo
+Open https://yt-graham.github.io/san-ledger/?demo to try the app with sample records (PIN `0000`).
+Nothing is saved; reload to reset. Sample data lives in `js/demo.js`.
+
 ## Sign-in
 1. Business account (email + password, Neon Auth). Create it once; the owner and cashier both use it.
 2. Role: Owner or Cashier with a 4-digit PIN (default `0000`; change it in Settings).
@@ -51,6 +55,7 @@ cannot change the Owner PIN or delete business records, and cannot edit or delet
 
 ## Files
 - `js/store.js` data model, ledgers, session
+- `js/demo.js` sample data for demo mode
 - `js/cloud.js` sign-in, cloud load/save, merge and sync status
 - `js/i18n.js` English → Burmese dictionary (English text is the key; missing keys fall back to English)
 - `js/ui.js` form/modal engine, tables, charts, print, CSV

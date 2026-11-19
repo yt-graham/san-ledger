@@ -12,7 +12,12 @@ const Cloud = {
   user: null, client: null, version: 0, base: null, error: '',
   pushing: false, dirty: false, timer: null, force: false,
 
+  demo: false,
   async init() {
+    if (isDemo()) {
+      this.demo = true; this.user = { email: 'demo', id: 'demo' }; demoDB(); this.status = 'ready';
+      render(); return;
+    }
     try {
       const { createClient } = await import(CLOUD_SDK);
       this.client = createClient(CLOUD_DB_URL);
@@ -41,6 +46,7 @@ const Cloud = {
     this.user = r.data.user; await this.load(); render(); return '';
   },
   async signOut() {
+    if (this.demo) { location.href = location.pathname; return; }
     await this.flush();
     try { await this.client.auth.signOut(); } catch (e) { console.error(e); }
     Session.role = ''; this.user = null; this.base = null; this.version = 0; this.status = 'signedOut';
@@ -72,7 +78,7 @@ const Cloud = {
   },
 
   saved() {
-    if (this.status !== 'ready') return;
+    if (this.status !== 'ready' || this.demo) return;
     localStorage.setItem(this.cacheKey(), JSON.stringify(db));
     this.schedule(700);
   },
@@ -168,6 +174,7 @@ function mergeList(B, L, R) {
 }
 
 function syncPillHTML() {
+  if (Cloud.demo) return `<span id="sync-pill" class="pill sync warn">${esc(t('Demo — not saved'))}</span>`;
   const map = { synced: ['Synced', 'ok'], saving: ['Saving…', ''], offline: ['Offline — will retry', 'warn'] };
   const [label, cls] = map[Cloud.sync] || map.synced;
   return `<span id="sync-pill" class="pill sync ${cls}" title="${esc(Cloud.user ? Cloud.user.email : '')}">${esc(t(label))}</span>`;
@@ -192,6 +199,7 @@ function cloudScreenHTML() {
     <div class="form-error" id="c-err"></div>
     <button class="btn primary block" type="submit" id="c-btn">${esc(t(up ? 'Create account' : 'Sign in'))}</button>
    </form>
+   <p class="muted sm center"><a href="?demo">${esc(t('Try the demo with sample data'))}</a></p>
    <p class="muted sm center">${up ? esc(t('Already have an account?')) : esc(t('First time?'))}
     <a href="#" onclick="${act((e) => { e.preventDefault(); cloudMode = up ? 'in' : 'up'; render(); })}">${esc(t(up ? 'Sign in' : 'Create account'))}</a></p>
   </div></div>`;
